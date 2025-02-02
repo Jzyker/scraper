@@ -43,14 +43,13 @@ def main():
     anuncios = soup.find_all('header', class_='elementor-element')
     for anuncio in anuncios:
         try:
-            # Extrai o nome da empresa
+            # Extrai a info1
             nome_empresa = anuncio.find('h2', class_='elementor-heading-title').text.strip()
             print(f"Processando anúncio: {nome_empresa}")
 
             # Extrai o link do anúncio
             link_anuncio = anuncio.find('a')['href']
 
-            # Clica no primeiro botão "Quero me candidatar" na página inicial
             try:
                 botao_candidatar_inicial = WebDriverWait(driver, 10).until(
                     EC.presence_of_element_located((By.XPATH, '//span[contains(text(), "Quero me candidatar")]'))
